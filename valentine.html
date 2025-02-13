@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine?</title>
+
+    <script type="text/javascript" src="Functions.js"></script>
+
+    <style>
+        /* Use flexbox to center the content */
+        body{
+            background-color: pink;
+        }
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            transition: all 0.5s ease; /* Smooth transition for the move */
+        }
+
+        form {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            transition: all 0.5s ease; /* Smooth transition for the form */
+        }
+
+        input[type="button"] {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease; /* Smooth transition for resizing */
+        }
+
+        .no {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+        }
+
+        .yes {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+        h1{
+            color: maroon;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <div>
+            <h1>Will you be free on Friday, 14th of February, at 7pm?</h1>
+        </div>
+
+        <input class="no" type="button" value="No" onmouseover="no()"/>
+        <input class="yes" type="button" value="Yes" onclick="yes()"/>
+    </form>
+
+    <script type="text/javascript">
+        // Initialize the scale values for the buttons
+        let noButtonScale = 1;
+        let yesButtonScale = 1;
+
+        function no() {
+            // Get the window width and height
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            // Calculate a random position within the window
+            const randomX = Math.random() * (windowWidth - 200); // 200px width of the form
+            const randomY = Math.random() * (windowHeight - 100); // 100px height of the form
+
+            // Move the form to the random position
+            const form = document.querySelector('form');
+            form.style.position = 'absolute';
+            form.style.left = `${randomX}px`;
+            form.style.top = `${randomY}px`;
+
+            // Get the "No" and "Yes" buttons
+            const noButton = document.querySelector('.no');
+            const yesButton = document.querySelector('.yes');
+
+            // Define the scale step (how much the size should change per hover)
+            const scaleStep = 0.05;
+
+            // Increase the size of the "Yes" button
+            yesButtonScale += scaleStep;
+            yesButton.style.transform = `scale(${yesButtonScale})`;
+
+            // Decrease the size of the "No" button
+            noButtonScale -= scaleStep;
+            noButton.style.transform = `scale(${noButtonScale})`;
+        }
+
+        function yes() {
+            window.location.href = "yes.html";
+        }
+    </script>
+</body>
+</html>
